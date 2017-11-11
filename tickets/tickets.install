@@ -1,0 +1,156 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+/*
+  function tickets_install() {
+  node_types_rebuild();
+  $types = node_type_get_types();
+  node_add_body_field($types['tickets']);
+  // drupal_install_schema('tickets');
+  }
+
+ */
+
+/*
+  function tickets_uninstall(){
+  drupal_uninstall_schema('tickets');
+
+  }
+ */
+function tickets_schema() {
+    $schema['tickets'] = array(
+      'description' => 'Stores Tickets for Tickets',
+      'fields' => array(
+        'tid' => array(
+          'description' => 'The primary identifier for a Tickets.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'pid' => array(
+          'description' => 'The project ID.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node ID.',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'project' => array(
+          'description' => 'Project Name for a Ticket.',
+          'type' => 'varchar',
+          'length' => 100,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'ticket_status' => array(
+          'description' => 'Project Name for a Ticket.',
+          'type' => 'varchar',
+          'length' => 100,
+          'not null' => FALSE,
+          //'default' => '',
+        ),
+        'issue_type' => array(
+          'description' => 'Issue Type a Ticket.',
+          'type' => 'varchar',
+          'length' => 32,
+          'not null' => FALSE,
+        ),
+        'summary' => array(
+          'description' => 'Summary of a Ticket.',
+          'type' => 'varchar',
+          'length' => 200,
+          'not null' => FALSE,
+          'default' => '',
+        ),
+        'reporter' => array(
+          'description' => 'Reporter of a Ticket.',
+          'type' => 'varchar',
+          'length' => 50,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'description' => array(
+          'description' => 'Description of a Ticket.',
+          'type' => 'varchar',
+          'length' => 10000,
+          'not null' => FALSE,
+          'default' => '',
+        ),
+        'priority' => array(
+          'description' => 'Priority Status of a Ticket.',
+          'type' => 'varchar',
+          'length' => 32,
+          'not null' => FALSE,
+        ),
+        'attachment' => array(
+          'description' => 'Attachment of a Ticket.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => FALSE,
+        ),
+        'assignee' => array(
+          'description' => 'Assignee of a Ticket.',
+          'type' => 'varchar',
+          'length' => 50,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'status' => array(
+          'description' => 'Active User Status.',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+      ),
+      'primary key' => array('tid'),
+    );
+
+    $schema['project'] = array(
+      'description' => 'Create a new Project',
+      'fields' => array(
+        'pid' => array(
+          'description' => 'The primary identifier for a Project.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'uid' => array(
+          'description' => 'User ID for project.',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'project' => array(
+          'description' => 'Project Name',
+          'type' => 'varchar',
+          'length' => 100,
+          'not null' => TRUE,
+        ),
+        'description' => array(
+          'description' => 'Description of Project..',
+          'type' => 'varchar',
+          'length' => 500,
+          'not null' => FALSE,
+          'default' => '',
+        ),
+      ),
+      'primary key' => array('pid'),
+    );
+
+    return $schema;
+}
+
+/*
+ *         'role_name' => array(
+          'description' => 'User role name for project.',
+          'type' => 'varchar',
+          'length' => 32,
+          'not null' => FALSE,
+        ),
+ */

@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function tickets_comment_schema() {
+    $schema['tickets_comment'] = array(
+      'description' => 'Stores Comments for Tickets',
+      'fields' => array(
+        'cid' => array(
+          'description' => 'The primary identifier for a comment.',
+          'type' => 'serial',
+          'not null' => TRUE,
+          //'unique' =>TRUE,
+        ),
+        'pid' => array(
+          'description' => 'The project id of selected project.',
+          'type' => 'int',
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node id of selected node.',
+          'type' => 'int',
+          'not null' => TRUE,
+        ),        
+        'uid' => array(
+          'description' => 'The ID of user who commented.',
+          'type' => 'int',
+          'not null' => TRUE,
+        ),
+        'subject' => array(
+          'description' => 'Subject of comment.',
+          'type' => 'varchar',
+          'length' => 500,
+          'not null' => TRUE,
+        ),
+        'comment' => array(
+          'description' => 'The text of comment.',
+          'type' => 'varchar',
+          'length' => 10000,
+          'not null' => TRUE,
+        ),        
+        'status' => array(
+          'description' => 'status of comment',
+          'type' => 'int',
+          'default' => '1',
+        ),
+        'created' => array(
+          'description' => 'Timestamp when comment is posted.',
+          'type' => 'varchar',
+          'length' => 50,
+          'not null' => TRUE,
+          //'default' => '',
+        ),
+        'changed' => array(
+          'description' => 'Timestamp when comment is editted.',
+          'type' => 'varchar',
+          'length' => 50,
+          'not null' => TRUE,
+        ),        
+      ),
+      'primary key' => array('cid'),
+    );
+    
+    return $schema;
+}

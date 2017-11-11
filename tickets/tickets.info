@@ -1,0 +1,7 @@
+name = Tickets    
+description = This is Ticket Manager    
+core = 7.x
+php = "5.2.4"
+version = "7.x.0.1"
+files[] = tickets.install
+files[] = tickets.module

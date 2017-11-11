@@ -1,0 +1,8 @@
+name = Comments(Ticket Manager)  
+description = This is comment module for Ticket Manager    
+core = 7.x
+php = "5.2.4"
+version = "7.x.0.0"
+dependencies[] = tickets
+files[] = tickets_comment.install
+files[] = tickets_comment.module
